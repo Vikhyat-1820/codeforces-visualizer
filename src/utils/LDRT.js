@@ -1,26 +1,46 @@
 const request=require('request')
 
 const langmap=(user,callback) => {
+
+
+    //URL
     const url="https://codeforces.com/api/user.status?handle=" +user + "&from=1"
     
+
+    //API CALL
     request({url,json:true},(error,response) => {
+
+        //NO INTERNET
         if(error){
             callback("Unable to connect to the network",undefined)
         }
+
+        //USER NOT FOUND
         else if(response.body.status==="FAILED"){
             callback("Unable to find the user",undefined)
         }
         else{
+
+
             const res=response.body.result
             const size=response.body.result.length
+
+
+
             var lang = new Map();
             var rating = new Map();
+            var ratingprob=new Map()
             var diff =new Map();
             var tag = new Map();
             var sub=new Map();
             var verd=new Map();
+
+
             for(i=0;i<size;i++){
+
                 if(res[i].verdict==='OK'){
+
+                    //LANGUAGES
                     var l=res[i].programmingLanguage
                     if(lang.has(l)===true){
                         var a=lang.get(l)
@@ -31,14 +51,41 @@ const langmap=(user,callback) => {
                         lang.set(l,1)
                     }
                     var r=res[i].problem.rating;
-                    if(rating.has(r)==true){
-                        var a=rating.get(r)
-                        a+=1
-                        rating.set(r,a)
+                    var id=res[i].problem.contestId +  res[i].problem.index
+
+
+
+                    //RATING
+                    if(r){
+                        if(ratingprob.has(r)===true){
+                            var a=ratingprob.get(r)
+                            if(a.has(id)===true){
+                                h=a.get(id);
+                                if(h===0){
+                                    a.set(id,1);
+                                }
+                            }
+                            else{
+                                a.set(id,1)
+                            }
+                            ratingprob.set(r,a)
+                        }
+                        else{
+                            var a=new Map()
+                            a.set(id,1)
+                            ratingprob.set(r,a)
+                        }
+                        if(rating.has(r)===true){
+                            var a=rating.get(r)
+                            rating.set(r,a)
+                        }
+                        else{
+                            rating.set(r,[0,0])
+                        }
                     }
-                    else{
-                        rating.set(r,1)
-                    }
+
+
+                    //A,B,C COUNT
                     var d=res[i].problem.index;
                     d=d[0];
                     if(diff.has(d)===true){
@@ -49,8 +96,10 @@ const langmap=(user,callback) => {
                     else{
                         diff.set(d,1)
                     }
+
+
+                    //TAGS COUNT
                     var t=res[i].problem.tags
-                    
                     for(j=0;j<t.length;j+=1){
                         if(tag.has(t[j])){
                             var a=tag.get(t[j]);
@@ -63,6 +112,39 @@ const langmap=(user,callback) => {
                     }
 
                 }
+                else{
+
+                    //RATING UNSOLVED COUNT
+                    var r=res[i].problem.rating;
+                    var id=res[i].problem.contestId +  res[i].problem.index
+                    if(r){
+                        if(ratingprob.has(r)===true){
+                            var a=ratingprob.get(r)
+                            if(a.has(id)===true){
+                                h=a.get(id);
+                            }
+                            else{
+                                a.set(id,0)
+                            }
+                            ratingprob.set(r,a)
+                        }
+                        else{
+                            var a=new Map()
+                            a.set(id,0)
+                            ratingprob.set(r,a)
+                        }
+                        if(rating.has(r)===true){
+                            var a=rating.get(r)
+                            rating.set(r,a)
+                        }
+                        else{
+                            rating.set(r,[0,0])
+                        }
+                    }
+                }
+
+
+                // HEATMAP 
                 var t=res[i].creationTimeSeconds
                 var t=t*1000
                 var date=new Date(t)
@@ -87,33 +169,82 @@ const langmap=(user,callback) => {
                 else{
                     verd.set(res[i].verdict,1)
                 }
+
+
             }
-            
             var diffmap=new Map([...diff.entries()].sort());
+
             var langarr=[['data','value']]
-            var ratingarr=[['data','value']]
+            
+            var ratingarr=[['data','value','solved']]
+            
             var diffarr=[['data','value']]
+            
             var tagarr=[['data','value']]
+            
             var verdarr=[['data','value']]
+            
             var subarr=[]
+            //LANG
+
             for (var key of lang.keys()){
                 langarr.push([key,lang.get(key)])
             }
-            for(var key of rating.keys()){
-                ratingarr.push([key,rating.get(key)])
+
+            // RATING
+            for(var key of ratingprob.keys()){
+                var a=ratingprob.get(key)
+                
+                for(var k of a.keys()){
+                    var b=a.get(k);
+                    
+                    if(b===1){
+                        var c=rating.get(key)
+                        c[0]+=1
+                        rating.set(key,c)
+                    }
+                    else{
+                        var c=rating.get(key)
+                        c[1]+=1
+                        rating.set(key,c)
+                    }
+                }
             }
+            rating=new Map([...rating.entries()].sort(function(a,b){    
+                return a[0]-b[0]
+            }));
+            
+            for(var key of rating.keys()){
+                var d=key.toString();
+                var a=rating.get(key)
+                ratingarr.push([d,a[0],a[1]])
+            }
+
+
+            //A,B,C COUNT
             for(var key of diffmap.keys()){
                 diffarr.push([key,diffmap.get(key)])
             }
+
+
+            //TAG COUNT
             for(var key of tag.keys()){
                 tagarr.push([key,tag.get(key)])
             }
+
+
+            //SUBMISSION HEATMAP
             for(var key of sub.keys()){
                 subarr.push([key,sub.get(key)])
             }
+
+            //VERDICT
             for(var key of verd.keys()){
                 verdarr.push([key,verd.get(key)])
             }
+            
+
+            //CALLBACK
             callback(undefined,{
                 langarr:langarr,
                 ratingarr:ratingarr,

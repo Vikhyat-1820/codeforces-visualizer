@@ -79,9 +79,7 @@ form.addEventListener('submit',(e) => {
                         title: "Count of Problem solved for each Rating",
                         width: 1200,
                         height: 400,
-                        bar: {groupWidth: "50%"},
-                        legend: { position: "none" },
-                        backgroundColor:'white',
+                        
                         
 
 
