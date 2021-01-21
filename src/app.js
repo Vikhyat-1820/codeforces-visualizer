@@ -19,8 +19,8 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 
-const langmap=require('./utils/lang.js')
-
+const langmap=require('./utils/LDRT.js')
+const UserRating=require('./utils/UserRating.js')
 
 
 
@@ -36,7 +36,6 @@ app.get('/info',(req,res)=>{
         })
     }
     const user=req.query.search
-    
     langmap(user,(error,response) => {
         if(error){
             return res.send({
@@ -48,9 +47,34 @@ app.get('/info',(req,res)=>{
             langarr:response.langarr,
             ratingarr:response.ratingarr,
             diffarr:response.diffarr,
-            tagarr:response.tagarr
+            tagarr:response.tagarr,
+            subarr:response.subarr,
+            verdarr:response.verdarr
+        })
+        
+    })
+
+    
+})
+
+app.get('/ratingchange',(req,res)=>{
+    if (!req.query.search) {
+        return res.send({
+            error:'you must provide User'
+        })
+    }
+    const user=req.query.search
+    UserRating(user,(error,response) => {
+        if(error){
+            return res.send({
+                error:error,
+            })
+        }
+        res.send({
+            ratingchange:response.ratingchange
         })
     })
+
     
 })
 
