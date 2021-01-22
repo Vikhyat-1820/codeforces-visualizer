@@ -21,6 +21,8 @@ app.use(express.static(publicDirectoryPath))
 
 const langmap=require('./utils/LDRT.js')
 const UserRating=require('./utils/UserRating.js')
+const userInfo=require('./utils/User.js')
+const { resolveSoa } = require('dns')
 
 
 
@@ -76,6 +78,31 @@ app.get('/ratingchange',(req,res)=>{
     })
 
     
+})
+
+app.get('/userinfo',(req,res) => {
+    if(!req.query.search){
+        return res.send({
+            error:"you must provide Username"
+        })
+    }
+    const user=req.query.search
+    console.log(user)
+    userInfo(user,(error,response) => {
+        console.log(response)
+        if(error){
+            return res.send({
+                error:error,
+            })
+        }
+        res.send({
+            rating:response.rating,
+            maxrating:response.maxrating,
+            rank:response.rank,
+            maxrank:response.maxrank
+        })
+    })
+
 })
 
 

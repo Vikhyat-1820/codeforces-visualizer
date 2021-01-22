@@ -176,7 +176,7 @@ const langmap=(user,callback) => {
 
             var langarr=[['data','value']]
             
-            var ratingarr=[['data','value','solved']]
+            var ratingarr=[['data','Solved','Unsolved']]
             
             var diffarr=[['data','value']]
             
@@ -229,7 +229,7 @@ const langmap=(user,callback) => {
 
             //TAG COUNT
             for(var key of tag.keys()){
-                tagarr.push([key,tag.get(key)])
+                tagarr.push([key + ' : ' + tag.get(key),tag.get(key)])
             }
 
 

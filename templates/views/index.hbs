@@ -2,38 +2,161 @@
 <html>
     <head>
         <title></title>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="/css/style.css"></link>
+
     </head>
     <body>
-        <h1>vikhyat</h1>
-        <form>
-            <input placeholder="user">
-            <button>SUBMIT</button>
-        </form>
+        
+        <section class="main box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-lg-2">
 
-        <p id="notfindmsg"></p>
-        <div id="langpiechart">
+                    </div>
+                    <div class="col-md-8 col-lg-8 text-center">
+                        <div class="form-wrapper box">
+                            <form id="user">
+                                <input placeholder="User Handle" id="userinput">
+                                {{!-- <button class="submit-button">SUBMIT</button> --}}
+                            </form>
+                            <p id="notfoundmessage" class="hidden"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-lg-2">
 
-        </div>
-        <div id="ratinghist">
+                    </div>
+                </div>
+                <div class="row text-center">
+                    
+                        
+                            <div class="col-md-3 col-lg-3">
+                                <div class="heading hidden">
+                                    <p id="userRatingH" class="Uheading"></p>
+                                    <p id="userRating" class="Uinfo"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3">
+                                <div class="heading hidden">
+                                    <p id="userMaxRatingH" class="Uheading"></p>
+                                    <p id="userMaxRating" class="Uinfo"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3">
+                                <div class="heading hidden">
+                                    <p id="userRankH" class="Uheading"></p>
+                                    <p id="userRank" class="Uinfo"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3">
+                                <div class="heading hidden">
+                                    <p id="userMaxRankH" class="Uheading"></p>
+                                    <p id="userMaxRank" class="Uinfo"></p>
+                                </div>
+                            </div>
+                        
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 text-center">
+                        <div id="langpiechart" class="box hidden" style="width:100%; height:auto;">
 
-        </div>
-        <div id='diffchart'>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div id='verdchart' class="box hidden" style="width:100%; height:auto;">
 
-        </div>
-        <div id='tagchart'>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 text-center">
+                        <div id="ratinghist" class="box hidden" style="width:100%; height:auto;">
 
-        </div>
-        <div id="ratingchange">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 text-center">
+                        <div id="diffchart" class="box hidden" style="width:100%; height:auto;">
 
-        </div>
-        <div id="subheatmap">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 text-center">
+                        <div id="tagchart" class="box hidden" style="width:100%; height:auto;">
 
-        </div>
-        <div id='verdchart'>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 text-center">
+                        <div id="ratingchange" class="box hidden" style="width:100%; height:auto;">
 
-        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 text-center">
+                        <div id="heatmap" class="box hidden" >
+                            <p id="heatmap-text"></p>
+                            <div id="subheatmap" style="width:100%; height:auto; align:center;" class="text-center">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!-- <div class="row text-center">
+                    <div class="col-md-3 col-lg-3">
+                        <p id="userRating" class="Uinfo"></p>
+                    </div>
+                    <div class="col-md-3 col-lg-3">
+                        <p id="userMaxRating" class="Uinfo"></p>
+                    </div>
+                    <div class="col-md-3 col-lg-3">
+                        <p id="userRank" class="Uinfo"></p>
+                    </div>
+                    <div class="col-md-3 col-lg-3">
+                        <p id="userMaxRank" class="Uinfo"></p>
+                    </div>
+                </div> --}}
+            </div>
+        </section>
+        
+        
+        
+        {{!-- <p id="userMaxRank"></p>
+        <p id="userMaxRating"></p>
+        <p id="notfindmsg"></p> --}}
+        {{!-- <div id="langpiechart">
+
+        </div> --}}
+        {{!-- <div id="ratinghist">
+
+        </div> --}}
+        {{!-- <div id='diffchart'>
+
+        </div> --}}
+        {{!-- <div id='tagchart'>
+
+        </div> --}}
+        {{!-- <div id="ratingchange">
+
+        </div> --}}
+        {{!-- <div id="subheatmap">
+
+        </div> --}}
+        {{!-- <div id='verdchart'>
+
+        </div> --}}
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <script src="/js/script.js"></script>
     </body>
 </html>

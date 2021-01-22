@@ -1,3 +1,130 @@
 body{
-    background-color: black;
+    
+    padding: 25px;
+}
+
+.main{
+    
+    background-color:#F3F3F3;
+
+}
+
+.C{
+    width: 80%;
+}
+
+
+.form-wrapper{
+    margin: 100px 0px;
+    background-color: white;
+}
+
+#user{
+    padding: 30px;
+}
+#userinput{
+    width:40%;
+    border: none;
+    background:none;
+    border-bottom: 2px solid #3C1874;
+    outline:none;
+    margin-right:40px;
+    color:#3C1874;
+    font-size:20px;
+}
+
+.submit-button{
+    background: none;
+    color:#3C1874;
+    padding: 5px 25px;
+    font-size: 1px;
+    border:1px solid #3C1874;
+    border-radius: 100000px;
+    letter-spacing: 3px;
+    transition: all .3s;
+}
+
+.submit-button:hover{
+    background-color: #3C1874;
+    color: #F3F3F3;
+}
+
+
+.heading{
+    background-color: white;
+    margin-bottom: 100px;
+    padding: 80px 15px;
+    border-radius: 100000px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+    
+}
+
+
+.Uheading{
+    font-size: 22px;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 1000;
+    color: #3C1874;
+    
+}
+
+.Uinfo{
+    font-size: 15px;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+
+
+/* hidden to-clear to-hide card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop */
+
+#langpiechart,#verdchart{
+   background-color: red;
+   margin-bottom:50px;
+}
+
+
+#ratinghist{
+    margin-bottom:50px;
+    
+}
+
+#diffchart{
+    margin-bottom: 50px;
+}
+
+#tagchart{
+    margin-bottom: 50px;
+}
+
+#ratingchange{
+    
+    margin-bottom: 50px;
+}
+
+#heatmap{
+    /* margin-bottom: 50px; */
+    background-color:white;
+    padding-left:70px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+    
+}
+
+#heatmap-text{
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 1;
+}
+.box{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+
+.hidden{
+    visibility: hidden;
 }
