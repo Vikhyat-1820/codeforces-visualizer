@@ -252,6 +252,7 @@ const langmap=(user,callback) => {
                 tagarr:tagarr,
                 subarr:subarr,
                 verdarr:verdarr,
+                ratingmap:ratingprob,
             })
         }
     })

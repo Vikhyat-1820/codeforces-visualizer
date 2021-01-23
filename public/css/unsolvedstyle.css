@@ -1,0 +1,78 @@
+body{
+    
+    padding: 25px;
+}
+.unsolvedlink{
+    text-decoration: none;
+    color: #3C1874;
+    background-color: white;
+    padding: 77px 20px;
+    margin: 80px 30px;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+    
+}
+
+.unsolvedlink:hover{
+    color:#F3F3F3;
+    background-color: #3C1874;
+}
+
+a{
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+    color:#3C1874
+}
+
+a:hover{
+    text-decoration: none; 
+}
+
+
+#unsolvedform{
+    width: 50%;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.inp{
+    width: 100%;
+    margin:40px 0px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #3C1874;
+    outline: none;
+}
+
+.submitbtn{
+    margin: 40px 0;
+    font-size: 20px;
+    padding: 5px 30px;
+    background: none;
+    border: 1px solid #3C1874;
+    border-radius: 1000000px;
+    transition: all .2s linear;
+}
+
+.submitbtn:hover{
+    background-color: #3C1874;
+    color: white;
+}
+
+.main{
+    background-color:#F3F3F3;
+    padding: 40px;
+    min-height: 95vh;
+}
+/* 
+.hidden{
+    visibility: hidden;
+} */

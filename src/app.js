@@ -22,12 +22,18 @@ app.use(express.static(publicDirectoryPath))
 const langmap=require('./utils/LDRT.js')
 const UserRating=require('./utils/UserRating.js')
 const userInfo=require('./utils/User.js')
+const unsolved=require('./utils/unsolved.js')
 const { resolveSoa } = require('dns')
 
 
 
 app.get('',(req,res) => {
     res.render('index')
+})
+
+
+app.get('/unsolved',(req,res) => {
+    res.render('Unsolved')
 })
 
 
@@ -58,6 +64,36 @@ app.get('/info',(req,res)=>{
 
     
 })
+
+
+app.get('/unsolvedproblem',(req,res)=>{
+    if (!req.query.search  || !req.query.from  ||  !req.query.to) {
+        return res.send({
+            error:'you must provide correct data'
+        })
+    }
+    const user=req.query.search
+    const from=req.query.from
+    const to=req.query.to
+    unsolved(user,from,to,(error,response) => {
+        //console.log(response)
+        //console.log(error)
+        if(error){
+            return res.send({
+                error:error,
+            })
+        }
+        
+        res.send({
+            unsolvedproblem:response.unsolvedproblem,
+        })
+        
+    })
+
+    
+})
+
+
 
 app.get('/ratingchange',(req,res)=>{
     if (!req.query.search) {
