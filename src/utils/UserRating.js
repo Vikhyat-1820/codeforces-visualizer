@@ -31,4 +31,36 @@ const UserRating=(user,callback) => {
     })
 }
 
-module.exports=UserRating
+const UserRank=(user,callback) => {
+    const url="https://codeforces.com/api/user.rating?handle=" + user
+
+    request({url,json:true},(error,response) => {
+       
+        if(error){
+            callback('Unable to connect to the network',undefined)
+        }
+        else if(response.body.status==='FAILED'){
+            callback('Unable to find the user',undefined)
+        }
+        else{
+            const res=response.body.result;
+            var maxRank=0,minRank=40000
+            for(i=0;i<res.length;i+=1){
+                if(res[i].rank>maxRank){
+                    maxRank=res[i].rank
+                }
+                if(res[i].rank<minRank){
+                    minRank=res[i].rank
+                }
+            }
+            callback(undefined,{
+                maxRank:maxRank,
+                minRank:minRank
+            })
+        }
+    })
+}
+module.exports={
+    UserRating,
+    UserRank
+}

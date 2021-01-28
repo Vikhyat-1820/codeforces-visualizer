@@ -20,10 +20,11 @@ app.use(express.static(publicDirectoryPath))
 
 
 const langmap=require('./utils/LDRT.js')
-const UserRating=require('./utils/UserRating.js')
-const userInfo=require('./utils/User.js')
+const {UserRating,UserRank}=require('./utils/UserRating.js')
+const {userInfo,usersInfo} =require('./utils/User.js')
 const unsolved=require('./utils/unsolved.js')
-const { resolveSoa } = require('dns')
+// const usersInfo=require('./utils/User.js')
+// const { resolveSoa } = require('dns')
 
 
 
@@ -34,6 +35,10 @@ app.get('',(req,res) => {
 
 app.get('/unsolved',(req,res) => {
     res.render('Unsolved')
+})
+
+app.get('/compare',(req,res) => {
+    res.render('compare')
 })
 
 
@@ -141,6 +146,52 @@ app.get('/userinfo',(req,res) => {
 
 })
 
+
+app.get('/usersInfo',(req,res) => {
+    if(!req.query.search1 && !req.query.search2){
+        return res.send({
+            error:"you must provide Username"
+        })
+    }
+    const user1=req.query.search1
+    const user2=req.query.search2
+    usersInfo(user1,user2,(error,response) => {
+        console.log(response)
+        if(error){
+            return res.send({
+                error:error,
+            })
+        }
+        res.send({
+            rating1:response.rating1,
+            maxRating1:response.maxRating1,
+            rating2:response.rating2,
+            maxRating2:response.maxRating2
+            
+        })
+    })
+
+})
+
+app.get('/userRank',(req,res) => {
+    if(!req.query.search){
+        return res.send({
+            error:"you must provide Username"
+        })
+    }
+    const user=req.query.search
+    UserRank(user,(error,response) => {
+        if(error){
+            return res.send({
+                error:error,
+            })
+        }
+        res.send({
+            maxRank:response.maxRank,
+            minRank:response.minRank
+        })
+    })
+})
 
 
 app.listen(3000, () => {
