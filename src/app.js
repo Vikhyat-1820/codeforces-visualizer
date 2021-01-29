@@ -19,10 +19,11 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 
-const langmap=require('./utils/LDRT.js')
-const {UserRating,UserRank}=require('./utils/UserRating.js')
+const {langmap,SubCount}=require('./utils/LDRT.js')
+const {UserRating,UserRank,ContestStat}=require('./utils/UserRating.js')
 const {userInfo,usersInfo} =require('./utils/User.js')
 const unsolved=require('./utils/unsolved.js')
+const { response } = require('express')
 // const usersInfo=require('./utils/User.js')
 // const { resolveSoa } = require('dns')
 
@@ -193,6 +194,52 @@ app.get('/userRank',(req,res) => {
     })
 })
 
+
+app.get('/conteststat',(req,res) => {
+    if(!req.query.search){
+        return res.send({
+            error:"you must provide the user"
+        })
+    }
+    const user=req.query.search
+    ContestStat(user,(error,response) => {
+        if(error){
+            return res.send({
+                error:error
+            })
+        }
+        res.send({
+            conteststat:response.conteststat
+        })
+    })
+
+})
+
+
+app.get('/substat',(req,res) => {
+    if(!req.query.search){
+        return res.send({
+            error:"you must provide the user"
+        })
+    }
+    const user=req.query.search
+    SubCount(user,(error,response) => {
+        if(error){
+            return res.send({
+                error:error
+            })
+            
+        }
+        res.send({
+            tried:response.tried,
+            solved:response.solved,
+            sub:response.sub,
+            maxsub:response.maxsub,
+            onesub:response.onesub,
+            unsolved:response.unsolved
+        })
+    })
+})
 
 app.listen(3000, () => {
     console.log('Server is up on port 3000.')

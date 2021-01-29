@@ -1,0 +1,54 @@
+body{
+    
+    padding: 25px;
+}
+
+.main{
+    background-color: #F3F3F3;
+    min-height: 100vh;
+}
+
+#inputform{
+    margin: 50px 0px;
+    background-color: white;
+    padding: 50px 0px 20px 0px;
+}
+
+.input{
+    margin:0px 10px 50px 10px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #3C1874;
+    width: 80%;
+    outline: none;
+}
+
+.submit{
+    font-size:17px;
+    background:none;
+    border-radius: 100000px;
+    border: 1px solid #3C1874;
+    padding: 3px 15px;
+    text-transform: uppercase;
+    color: #3C1874;
+}
+
+.submit:hover{
+    transition: all .2s linear;
+    background: #3C1874;
+    color: #F3F3F3;
+}
+
+.box{
+    margin-bottom: 50px;
+}
+
+
+#ratingcompare,#contestcompare,#rChangecompare,
+#TriedChart,#RatingChangeChart,#RankTable,
+#RatingChart,#DiffChart,#TagChart,
+#ContestTable,#UnsolvedChart,#OneSubChart,
+#AverageChart{
+    display: none;
+    
+}

@@ -5,6 +5,8 @@ const unsolved=(user,from,to,callback) => {
     const url="https://codeforces.com/api/user.status?handle=" +user + "&from=1"
 
     request({url,json:true},(error,response) => {
+        console.log(url)
+        console.log("UNSOLVED",response.body.status)
         console.log(error)
         if(error){
             callback("unable to connect",undefined)

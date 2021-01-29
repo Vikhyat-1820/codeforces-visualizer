@@ -9,7 +9,8 @@ const langmap=(user,callback) => {
 
     //API CALL
     request({url,json:true},(error,response) => {
-
+        console.log(url)
+        console.log("LANGMAP",response.body.status)
         //NO INTERNET
         if(error){
             callback("Unable to connect to the network",undefined)
@@ -19,12 +20,15 @@ const langmap=(user,callback) => {
         else if(response.body.status==="FAILED"){
             callback("Unable to find the user",undefined)
         }
+        else if(response.body.result.length===0){
+            callback("No contests",undefined)
+        }
         else{
 
 
             const res=response.body.result
             const size=response.body.result.length
-
+            
 
 
             var lang = new Map();
@@ -87,27 +91,33 @@ const langmap=(user,callback) => {
 
                     //A,B,C COUNT
                     var d=res[i].problem.index;
+                    var cId=res[i].problem.contestId
                     d=d[0];
                     if(diff.has(d)===true){
                         var a=diff.get(d)
-                        a+=1
+                        if(a.includes(cId+d)==false){
+                            a.push(cId+d)
+                        }
                         diff.set(d,a)
                     }
                     else{
-                        diff.set(d,1)
+                        diff.set(d,[cId + d])
                     }
 
 
                     //TAGS COUNT
                     var t=res[i].problem.tags
+                    d=res[i].problem.index;
                     for(j=0;j<t.length;j+=1){
                         if(tag.has(t[j])){
                             var a=tag.get(t[j]);
-                            a+=1
+                            if(a.includes(cId+d)===false){
+                                a.push(cId+d)
+                            }
                             tag.set(t[j],a)
                         }
                         else{
-                            tag.set(t[j],1)
+                            tag.set(t[j],[cId+d])
                         }
                     }
 
@@ -223,13 +233,16 @@ const langmap=(user,callback) => {
 
             //A,B,C COUNT
             for(var key of diffmap.keys()){
-                diffarr.push([key,diffmap.get(key)])
+                var a=diffmap.get(key)
+
+                diffarr.push([key,a.length])
             }
 
 
             //TAG COUNT
             for(var key of tag.keys()){
-                tagarr.push([key + ' : ' + tag.get(key),tag.get(key)])
+                var a=tag.get(key)
+                tagarr.push([key,a.length])
             }
 
 
@@ -259,4 +272,94 @@ const langmap=(user,callback) => {
 }
 
 
-module.exports=langmap
+const SubCount=(user,callback) => {
+    const url="https://codeforces.com/api/user.status?handle=" +user + "&from=1"
+    request({url,json:true},(error,response) => {
+        console.log(url)
+        console.log("SUBCOUNT",response.body.status)
+        if(error){
+            callback("unable to connect to the network",undefined);
+        }
+        else if(response.body.status==="FAILED"){
+            callback("Unable to find the User",undefined)
+        }
+        else if(response.body.result.length===0){
+            callback("No contests",undefined)
+        }
+        else{
+            const res=response.body.result
+            
+            var submap=new Map()
+            var firstsubmap=new Map()
+            res.reverse()
+            var tried=0
+            var solved=0
+            var sub=0;
+            var maxsub=0;
+            var onesub=0;
+            for(i=0;i<res.length;i+=1){
+                const problemname=res[i].problem.contestId + res[i].problem.index
+                if(firstsubmap.has(problemname)===false){
+                    firstsubmap.set(problemname,res[i].verdict)
+                }
+                if(submap.has(problemname)){
+                    a=submap.get(problemname)
+                    if(res[i].verdict==="OK"){
+                        if(a[0]===0){
+                            if(a[1]+1>maxsub){
+                                maxsub=a[1]+1
+                            }
+                        }
+                        a[0]+=1
+                    }
+                    else{
+                        a[1]+=1
+                    }
+                    submap.set(problemname,a)
+                }
+                else{
+                    var a=[0,0]
+                    if(res[i].verdict==="OK"){
+                        if(a[0]===0){
+                            if(a[1]+1>maxsub){
+                                maxsub=a[1]+1
+                            }
+                        }
+                        a[0]+=1
+                    }
+                    else{
+                        a[1]+=1
+                    }
+                    submap.set(problemname,a)
+                }
+            }
+            
+            for(var key of submap.keys()){
+                tried+=1
+                var a=submap.get(key)
+                if(a[0]>0){
+                    solved+=1
+                }
+                sub+=a[0]
+                sub+=a[1]
+                if(firstsubmap.get(key)==="OK"){
+                    onesub+=1
+                }
+            }
+            var unsolved=tried-solved
+            callback(undefined,{
+                tried:tried,
+                solved:solved,
+                sub:sub,
+                maxsub:maxsub,
+                onesub:onesub,
+                unsolved:unsolved
+            })
+        }
+    })
+}
+
+module.exports={
+    langmap,
+    SubCount
+}

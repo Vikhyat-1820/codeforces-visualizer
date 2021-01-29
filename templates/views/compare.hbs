@@ -9,30 +9,153 @@
     </head>
     <body>
 
-        <form id="inputform">
-            <input placeholder="Handle 1" id="handle1">
-            <input placeholder="Handle 2" id="handle2">
-            <button>Submit</button>
-        </form>
-        <div id="ratingcompare">
 
-        </div>
-        <div id="contestcompare">
+        <section class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-lg-2">
 
-        </div>
-        <div id="rChangecompare">
+                    </div>
+                    <div class="col-md-8 col-lg-8 text-center">
+                         <form id="inputform" class="box">
+                             <div class="container">
+                                 <div class="row">
+                                     <div class="col-md-6 col-lg-6">
+                                         <input placeholder="Handle 1" id="handle1" class="input">
+                                         <p id="handle1msg"></p>
+                                     </div>
+                                     <div class="col-md-6 col-lg-6">
+                                         <input placeholder="Handle 2" id="handle2" class="input">
+                                         <p id="handle2msg"></p>
+                                     </div>
+                                     <div class="col-md-12 col-lg-12">
+                                         <button class="submit">Compare</button>
+                                     </div>
+                                 </div>
+                             </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 col-lg-2">
 
-        </div>
-        <div id="RankTable">
+                    </div>
+                    <div class="col-md-6">
+                        <div id="ratingcompare" class="box" style="width:100%; height:auto;">
 
-        </div>
-        <div id="RatingChart">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="contestcompare" class="box" style="width:100%; height:auto;">
 
-        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-6">
+                        <div id="rChangecompare" class="box" style="width:100%; height:auto;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-12">
+                        <div id="TriedChart" class="box" style="width:100%; height:auto;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="RatingChangeChart" class="box" style="width:100%; height:auto; overflow:scroll;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="RankTable" class="box" >
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="RatingChart" class="box" style="width:100%; height:auto; overflow:scroll;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="DiffChart" class="box" style="width:100%; height:auto; overflow:scroll;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="TagChart" class="box" style="width:100%; height:auto; overflow:scroll;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="ContestTable" class="box">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="UnsolvedChart" class="box" style="width:100%; height:auto;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="OneSubChart" class="box" style="width:100%; height:auto;">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="AverageChart" class="box" style="width:100%; height:auto;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        {{!-- <div id="ratingcompare">
+
+        </div> --}}
+        {{!-- <div id="contestcompare">
+
+        </div> --}}
+        {{!-- <div id="rChangecompare">
+
+        </div> --}}
+        {{!-- <div id="RankTable">
+
+        </div> --}}
+        {{!-- <div id="RatingChangeChart">
+
+        </div> --}}
+        {{!-- <div id="RatingChart">
+
+        </div> --}}
+        {{!-- <div id="DiffChart">
+
+        </div> --}}
+        {{!-- <div id="TagChart">
+
+        </div> --}}
+        {{!-- <div id="ContestTable">
+
+        </div> --}}
+        {{!-- <div id="TriedChart">
+
+        </div> --}}
+        {{!-- <div id="UnsolvedChart">
+
+        </div> --}}
+        {{!-- <div id="OneSubChart">
+
+        </div> --}}
+        {{!-- <div id="AverageChart">
+
+        </div> --}}
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <script src="/js/compare.js"></script>
+        <script src="/js/compare1.js"></script>
     </body>
 </html>
