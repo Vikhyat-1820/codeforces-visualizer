@@ -21,7 +21,7 @@ const langmap=(user,callback) => {
             callback("Unable to find the user",undefined)
         }
         else if(response.body.result.length===0){
-            callback("No contests",undefined)
+            callback("No Submission",undefined)
         }
         else{
 

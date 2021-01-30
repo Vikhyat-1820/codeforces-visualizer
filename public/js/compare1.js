@@ -9,6 +9,7 @@ const ratingcompare=document.querySelector('#ratingcompare')
 const handle1msg=document.querySelector('#handle1msg')
 const handle2msg=document.querySelector('#handle2msg')
 
+
 function compDate(d1,d2){
     var date1=new Date(parseInt(d1))
     var date2=new Date(parseInt(d2))

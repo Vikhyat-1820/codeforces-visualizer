@@ -3,9 +3,7 @@ const userform=document.querySelector('#user')
 const userinput = document.querySelector('#userinput')
 
 
-const hidden=document.getElementsByClassName('hidden')
 const notFoundMessage=document.querySelector('#notfoundmessage')
-const notfoundmsgid=document.getElementById('notfoundmessage')
 const userRating=document.querySelector('#userRating')
 const userRank=document.querySelector('#userRank')
 const userMaxRating=document.querySelector('#userMaxRating')
@@ -17,6 +15,25 @@ const userMaxRankH=document.querySelector('#userMaxRankH')
 const heatmapText=document.querySelector('#heatmap-text')
 
 
+const userRatingdiv=document.getElementById('RatingH')
+const userRankdiv=document.getElementById('RankH')
+const userMaxRatingdiv=document.getElementById('MRating')
+const userMaxRankdiv=document.getElementById('MRank')
+const heatmapTextdiv=document.getElementById('heatmap-text')
+
+
+
+
+const langpiediv=document.getElementById('langpiechart')
+const verdchartdiv=document.getElementById('verdchart')
+const ratinghistdiv=document.getElementById('ratinghist')
+const diffchartdiv=document.getElementById('diffchart')
+const tagchartdiv=document.getElementById('tagchart')
+const ratingchangediv=document.getElementById('ratingchange')
+const subheatmapdiv=document.getElementById('subheatmap')
+
+
+
 
 userform.addEventListener('submit',(e) => {
     console.log('form called')
@@ -25,18 +42,22 @@ userform.addEventListener('submit',(e) => {
     fetch('http://localhost:3000/info?search='+ user).then((response) => {
         response.json().then((data) => {
             if(data.error){
-                for(i=0;i<hidden.length;i++){
-                    hidden[i].style.visibility='hidden'
-                    
-                }
-                notfoundmsgid.style.visibility='visible'
+                
+                document.getElementById('langpiechart').style.display="none"
+                document.getElementById('verdchart').style.display="none"
+                document.getElementById('ratinghist').style.display="none"
+                document.getElementById('diffchart').style.display="none"
+                document.getElementById('tagchart').style.display="none"
+                document.getElementById('heatmap').style.display="none"
                 notFoundMessage.textContent=data.error
             }
             else{
-                for(i=0;i<hidden.length;i++){
-                    hidden[i].style.visibility='visible'
-                }
-                notfoundmsgid.style.visibility='hidden'
+                document.getElementById('langpiechart').style.display="block"
+                document.getElementById('verdchart').style.display="block"
+                document.getElementById('ratinghist').style.display="block"
+                document.getElementById('diffchart').style.display="block"
+                document.getElementById('tagchart').style.display="block"
+                document.getElementById('heatmap').style.display="block"
                 notFoundMessage.textContent=''
                 var langarr=data.langarr
                 var ratingarr=data.ratingarr
@@ -134,6 +155,7 @@ userform.addEventListener('submit',(e) => {
                     dataTable.addColumn({ type: 'date', id: 'Date' });
                     dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
                     // console.log(heatmaparr)
+                    console.log(heatmaparr)
                     dataTable.addRows(heatmaparr);
                     var chart = new google.visualization.Calendar(document.getElementById('subheatmap'));
                     var options = {
@@ -151,7 +173,7 @@ userform.addEventListener('submit',(e) => {
                       fontSize:20,
                       
                       
-                    };
+                    }
              
                     chart.draw(dataTable, options);
                 }
@@ -186,17 +208,11 @@ userform.addEventListener('submit',(e) => {
         response.json().then((data) => {
             if(data.error){
                 
-                for(i=0;i<hidden.length;i++){
-                    hidden[i].style.visibility='hidden'
-                }
-                notfoundmsgid.style.visibility='visible'
+                document.getElementById('ratingchange').style.display="none"
                 notFoundMessage.textContent=data.error
             }
             else{
-                for(i=0;i<hidden.length;i++){
-                    hidden[i].style.visibility='visible'
-                }
-                notfoundmsgid.style.visibility='hidden'
+                document.getElementById('ratingchange').style.display="block"
                 notFoundMessage.textContent=''
                 var ratingchange=data.ratingchange
                 var ratingchangearr=[]
@@ -229,19 +245,20 @@ userform.addEventListener('submit',(e) => {
     fetch('http://localhost:3000/userinfo?search=' + user).then((response) => {
         response.json().then((data) => {
             if(data.error){
-                // console.log(error)
-                for(i=0;i<hidden.length;i++){
-                    hidden[i].style.visibility='hidden'
-                }
-                notfoundmsgid.style.visibility='visible'
+                
+                document.getElementById('RatingH').style.display="none"
+                document.getElementById('RankH').style.display="none"
+                document.getElementById('MRating').style.display="none"
+                document.getElementById('MRank').style.display="none"
                 notFoundMessage.textContent=data.error
             }
             else{
-                for(i=0;i<hidden.length;i++){
-                    hidden[i].style.visibility='visible'
-                }
-                notfoundmsgid.style.visibility='hidden'
+                document.getElementById('RatingH').style.display="block"
+                document.getElementById('RankH').style.display="block"
+                document.getElementById('MRating').style.display="block"
+                document.getElementById('MRank').style.display="block"
                 notFoundMessage.textContent=''
+
                 if(data.rating){
                     userRating.textContent=data.rating
                     userRank.textContent=data.rank

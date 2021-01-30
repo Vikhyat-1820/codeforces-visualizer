@@ -10,7 +10,24 @@
 
     </head>
     <body>
-        
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand navheading" href="/">Cf-Visualizer</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active links">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item links">
+                        <a class="nav-link" href="/unsolved">Unsolved</a>
+                    </li>
+                    <li class="nav-item links">
+                        <a class="nav-link" href="/compare">Compare</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </nav>
+       
         <section class="main box">
             <div class="container">
                 <div class="row">
@@ -21,9 +38,10 @@
                         <div class="form-wrapper box">
                             <form id="user">
                                 <input placeholder="User Handle" id="userinput">
+                                <p id="notfoundmessage" class="hidden"></p>
                                 {{!-- <button class="submit-button">SUBMIT</button> --}}
                             </form>
-                            <p id="notfoundmessage" class="hidden"></p>
+                            
                         </div>
                     </div>
                     <div class="col-md-2 col-lg-2">
@@ -34,25 +52,25 @@
                     
                         
                             <div class="col-md-3 col-lg-3">
-                                <div class="heading hidden">
+                                <div class="heading hidden" id="RatingH">
                                     <p id="userRatingH" class="Uheading"></p>
                                     <p id="userRating" class="Uinfo"></p>
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3">
-                                <div class="heading hidden">
+                                <div class="heading hidden" id="MRating">
                                     <p id="userMaxRatingH" class="Uheading"></p>
                                     <p id="userMaxRating" class="Uinfo"></p>
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3">
-                                <div class="heading hidden">
+                                <div class="heading hidden" id="RankH">
                                     <p id="userRankH" class="Uheading"></p>
                                     <p id="userRank" class="Uinfo"></p>
                                 </div>
                             </div>
                             <div class="col-md-3 col-lg-3">
-                                <div class="heading hidden">
+                                <div class="heading hidden" id="MRank">
                                     <p id="userMaxRankH" class="Uheading"></p>
                                     <p id="userMaxRank" class="Uinfo"></p>
                                 </div>
@@ -102,7 +120,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-lg-12 text-center">
-                        <div id="heatmap" class="box hidden" >
+                        <div id="heatmap" class="box" >
                             <p id="heatmap-text"></p>
                             <div id="subheatmap" style="width:100%; height:auto; align:center;" class="text-center">
                                 

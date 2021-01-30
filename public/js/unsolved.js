@@ -35,7 +35,7 @@ unsolvedform.addEventListener('submit',(e) => {
                     var problem=a[1]
                     const url="https://codeforces.com/contest/" + contestid + "/problem/" + problem
                     $('#unsolvedList').append(
-                        '<div class="col-md-3 col-lg-3 text-center" ><a href="' + url + '" target="_blank"><div class="unsolvedlink">' + contestid + problem + '</div></a></div>'
+                        '<div class="col-md-3 col-lg-3 text-center" ><a href="' + url + '" target="_blank" class="plink"><div class="unsolvedlink">' + contestid + problem + '</div></a></div>'
                     )
                 }
                 console.log(unsolvedproblem)

@@ -9,7 +9,23 @@
     </head>
     <body>
 
-
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand navheading" href="/">Cf-Visualizer</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item links">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item links">
+                        <a class="nav-link" href="/Unsolved">Unsolved</a>
+                    </li>
+                    <li class="nav-item links active">
+                        <a class="nav-link" href="/compare">Compare</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </nav>
         <section class="main">
             <div class="container">
                 <div class="row">
@@ -21,12 +37,12 @@
                              <div class="container">
                                  <div class="row">
                                      <div class="col-md-6 col-lg-6">
-                                         <input placeholder="Handle 1" id="handle1" class="input">
-                                         <p id="handle1msg"></p>
+                                         <input placeholder="Handle 1" id="handle1" class="input text-left">
+                                         <p id="handle1msg" class="warning text-left"></p>
                                      </div>
                                      <div class="col-md-6 col-lg-6">
                                          <input placeholder="Handle 2" id="handle2" class="input">
-                                         <p id="handle2msg"></p>
+                                         <p id="handle2msg" class="warning text-left"></p>
                                      </div>
                                      <div class="col-md-12 col-lg-12">
                                          <button class="submit">Compare</button>
